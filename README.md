@@ -1,71 +1,157 @@
 # GLUD-Git
 
-**DESCRIPCIÓN**
-Proyecto de una plataforma web para coaches personales. 
-Permite registrar clientes, crear rutinas y hacer seguimiento básico.
+## Descripción
 
-La información se guarda en archivos JSON, sin base de datos, para mantener el proyecto simple.
+Plataforma web para coaches personales que permite:
 
-**INTEGRANTES**
-- Juan Sebastian Garzon Beltran
-- Adrian Felipe Aparicio Chaparro
+* Registrar clientes
+* Crear rutinas
+* Asignar rutinas a clientes
+* Registrar progreso (texto simple)
+* Consultar el progreso de un cliente
 
-**FUNCIONALIDADES**
+La información se almacena en archivos JSON para mantener el proyecto simple y enfocado en lógica y colaboración.
 
-- Crear clientes
-- Ver lista de clientes
-- Crear rutinas
-- Asignar rutina a cliente
-- Registrar progreso (texto simple)
-- Ver progreso de un cliente
+---
 
-**ESTRUCTURA DEL PROYECTO**
+## Tecnologías
 
-project/
-│
+* **Backend:** FastAPI
+* **Servidor:** Uvicorn
+* **Frontend:** HTML + CSS
+* **Persistencia:** Archivos JSON (sin base de datos)
+
+---
+
+## Integrantes
+
+* Juan Sebastian Garzon Beltran
+* Adrian Felipe Aparicio Chaparro
+
+---
+
+## Estructura del Proyecto
+
+```
+GLUD-Git/
 ├── app/
 │   ├── main.py
 │   ├── utils.py
-│   │
 │   ├── data/
 │   │   ├── clients.json
 │   │   ├── routines.json
 │   │   └── progress.json
-│   │
 │   └── routes/
 │       ├── clients.py
 │       ├── routines.py
 │       └── progress.py
-│
 ├── frontend/
 │   ├── index.html
 │   ├── clients.html
 │   ├── routines.html
 │   └── styles.css
-│
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+```
 
-**ALMACENAMIENTO**
+---
 
-Los datos se guardan en archivos .json:
+## Requisitos
 
-- clients.json
-- routines.json
-- progress.json
+* Python 3.10 o superior
+* pip
+* Sistema operativo Linux/Mac/Windows
 
+---
 
-**ENDPOINTS**
+## Ejecución del Proyecto
 
-- Clientes:
-GET /clients
-POST /clients
+```bash
+# Clonar repositorio
+git clone <URL_DEL_REPO>
+cd GLUD-Git
 
-- Rutinas:
-GET /routines
-POST /routines
+# Crear entorno virtual
+python3 -m venv venv
 
-- Progreso:
-POST /progress
-GET /progress/{client_id}
+# Activar entorno virtual
+source venv/bin/activate   # Linux/Mac
+venv\Scripts\activate      # Windows
+
+# Instalar dependencias
+pip install -r requirements.txt
+
+# Ejecutar servidor
+uvicorn app.main:app --reload
+```
+
+---
+
+## Acceso a la API
+
+Una vez ejecutado el servidor:
+
+* API base:
+  http://127.0.0.1:8000/
+
+* Documentación interactiva (Swagger):
+  http://127.0.0.1:8000/docs
+
+---
+
+## Endpoints
+
+### Clientes
+
+* `GET /clients` → Obtener lista de clientes
+* `POST /clients` → Crear cliente
+
+### Rutinas
+
+* `GET /routines` → Obtener rutinas
+* `POST /routines` → Crear rutina
+
+### Progreso
+
+* `POST /progress` → Registrar progreso
+* `GET /progress/{client_id}` → Ver progreso de un cliente
+
+---
+
+## Almacenamiento
+
+Los datos se almacenan en archivos JSON dentro de:
+
+```
+app/data/
+```
+
+* `clients.json`
+* `routines.json`
+* `progress.json`
+
+---
+
+## Flujo de Trabajo (Git)
+
+Se utiliza:
+
+* **Feature Branch Workflow**
+* **Conventional Commits**
+
+### Reglas:
+
+* No hacer push directo a `main`
+* Usar ramas tipo:
+
+  * `feat/...`
+  * `fix/...`
+  * `chore/...`
+* Todo cambio pasa por Pull Request (PR)
+
+---
+
+## 📄 Licencia
+
+Este proyecto está bajo la licencia MIT.
