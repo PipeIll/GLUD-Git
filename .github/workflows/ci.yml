@@ -9,15 +9,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
+      
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.12'
 
+      
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Check app
+      
+      - name: Syntax check
+        run: |
+          python -m py_compile app/main.py
+          python -m py_compile app/utils.py
+          python -m py_compile app/routes/clients.py
+          python -m py_compile app/routes/routines.py
+          python -m py_compile app/routes/progress.py
+
+      
+      - name: Import check
         run: python -c "import app.main"
+
+      
+      - name: Check project structure
+        run: |
+          test -f README.md
+          test -f requirements.txt
+          test -d app
