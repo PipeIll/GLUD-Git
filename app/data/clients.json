@@ -1,18 +1,26 @@
 [
-  {
-    "id": 1,
-    "name": "Juan",
-    "age": 24,
-    "weight": 70,
-    "height": 1.75,
-    "goal": "Perder grasa"
-  },
-  {
-    "id": 2,
-    "name": "Carlos",
-    "age": 30,
-    "weight": 70,
-    "height": 1.60,
-    "goal": "Ganar masa muscular"
-  }
+    {
+        "id": 1,
+        "name": "Juan",
+        "age": 24,
+        "weight": 70,
+        "height": 1.75,
+        "goal": "Perder grasa"
+    },
+    {
+        "id": 2,
+        "name": "Carlos",
+        "age": 30,
+        "weight": 70,
+        "height": 1.6,
+        "goal": "Ganar masa muscular"
+    },
+    {
+        "id": 3,
+        "name": "anna",
+        "age": 19,
+        "weight": 62.3,
+        "height": 1.57,
+        "goal": "Mejorar Cardio"
+    }
 ]
