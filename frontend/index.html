@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GLUD-Git Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>GLUD-Git - Coach Platform</h1>
+
+    <nav>
+        <a href="clients.html">Clients</a>
+        <a href="routines.html">Routines</a>
+    </nav>
+
+    <div class="card">
+        <h2>API Status</h2>
+        <button onclick="checkHealth()">Check API</button>
+        <p id="status"></p>
+    </div>
+
+    <script>
+        async function checkHealth() {
+            const res = await fetch("http://127.0.0.1:8000/health");
+            const data = await res.json();
+            document.getElementById("status").innerText = data.status;
+        }
+    </script>
+
+</body>
+</html>
