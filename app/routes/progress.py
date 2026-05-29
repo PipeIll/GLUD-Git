@@ -30,3 +30,11 @@ def create_progress(progress: Progress):
         "message": "Progress registered successfully",
         "progress": new_entry
     }
+    
+@router.get("/{client_id}")
+def get_progress(client_id: int):
+    all_progress = read_json("app/data/progress.json")
+    
+    client_progress = [entry for entry in all_progress if entry["client_id"] == client_id]
+    
+    return client_progress  
