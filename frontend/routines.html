@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Routines</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>Routines</h1>
+
+<form id="routineForm">
+    <input placeholder="Name" id="name">
+    <input placeholder="Description" id="description">
+    <input placeholder="Client ID" id="client_id" type="number">
+    <button type="submit">Create</button>
+</form>
+
+<h2>Routine List</h2>
+<ul id="routineList"></ul>
+
+<script>
+const API = "http://127.0.0.1:8000/routines";
+
+async function loadRoutines() {
+    const res = await fetch(API);
+    const data = await res.json();
+
+    const list = document.getElementById("routineList");
+    list.innerHTML = "";
+
+    data.forEach(r => {
+        const li = document.createElement("li");
+        li.innerText = `${r.id} - ${r.name} (Client ${r.client_id})`;
+        list.appendChild(li);
+    });
+}
+
+document.getElementById("routineForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const routine = {
+        name: document.getElementById("name").value,
+        description: document.getElementById("description").value,
+        client_id: parseInt(document.getElementById("client_id").value)
+    };
+
+    await fetch(API, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(routine)
+    });
+
+    loadRoutines();
+});
+
+loadRoutines();
+</script>
+
+</body>
+</html>

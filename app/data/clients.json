@@ -22,5 +22,13 @@
         "weight": 62.3,
         "height": 1.57,
         "goal": "Mejorar Cardio"
+    },
+    {
+        "id": 4,
+        "name": "guillermo",
+        "age": 32,
+        "weight": 45.0,
+        "height": 190.0,
+        "goal": "Mejorar Cardio"
     }
 ]

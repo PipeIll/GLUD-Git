@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "id": 1,
+        "name": "cardio hiit",
+        "description": "15 min caminadora",
+        "client_id": 1
+    }
+]

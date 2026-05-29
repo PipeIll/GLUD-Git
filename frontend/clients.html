@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clients</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>Clients</h1>
+
+<form id="clientForm">
+    <input placeholder="Name" id="name">
+    <input placeholder="Age" id="age" type="number">
+    <input placeholder="Weight" id="weight" type="number">
+    <input placeholder="Height" id="height" type="number">
+    <input placeholder="Goal" id="goal">
+    <button type="submit">Create</button>
+</form>
+
+<h2>Client List</h2>
+<ul id="clientList"></ul>
+
+<script>
+const API_CLIENTS = "http://127.0.0.1:8000/clients";
+const API_PROGRESS = "http://127.0.0.1:8000/progress";
+
+async function loadClients() {
+    const res = await fetch(API_CLIENTS);
+    const clients = await res.json();
+
+    const list = document.getElementById("clientList");
+    list.innerHTML = "";
+
+    for (const c of clients) {
+
+        // pedir progreso por cliente
+        const progRes = await fetch(`${API_PROGRESS}/${c.id}`);
+        const progress = await progRes.json();
+
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+            <b>${c.name}</b> (Goal: ${c.goal})<br>
+            <small>Age: ${c.age} | Weight: ${c.weight} | Height: ${c.height}</small>
+            <br>
+            <b>Progress:</b>
+            <ul>
+                ${progress.length > 0
+                    ? progress.map(p => `<li>${p.note}</li>`).join("")
+                    : "<li>Sin progreso registrado</li>"
+                }
+            </ul>
+            <hr>
+        `;
+
+        list.appendChild(li);
+    }
+}
+
+loadClients();
+</script>
+
+</body>
+</html>
