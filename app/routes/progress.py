@@ -38,3 +38,6 @@ def get_progress(client_id: int):
     client_progress = [entry for entry in all_progress if entry["client_id"] == client_id]
     
     return client_progress  
+
+def funcion_rota(
+    print("esto es un error de sintaxis"
