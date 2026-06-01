@@ -18,7 +18,7 @@ jobs:
           zip -r GLUD-Git.zip . -x "venv/*" ".git/*"
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: actions/create-release@v4
         with:
           files: GLUD-Git.zip
         env:
